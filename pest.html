@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesticides & Insecticides for Agriculture</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #87CEEB, #FFFFFF);
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFFFFF;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .heading {
+            font-size: 2.5em;
+            color: #2E8B57;
+            margin-bottom: 20px;
+        }
+
+        .sub-heading {
+            font-size: 1.5em;
+            color: #4682B4;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            text-align: left;
+            margin: 20px;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .content ul li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .content ul li::before {
+            content: "✅ ";
+            color: #2E8B57;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .call-to-action {
+            background: linear-gradient(135deg, #2E8B57, #4682B4);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .call-to-action a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        .call-to-action a:hover {
+            text-decoration: underline;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">Pesticides & Insecticides for Agriculture</div>
+        <div class="sub-heading">Protect Your Crops</div>
+        <div class="content" id="page1">
+            <img src="https://t4.ftcdn.net/jpg/02/28/34/83/240_F_228348379_6JHsGfSCqX4wof121lkzqc7JVL1NYL0U.jpg">
+            <h3>Overview</h3>
+            <p>Pesticides and insecticides are essential for protecting crops from harmful pests, insects, and diseases. They help improve yield quality and quantity by preventing infestations that could damage plants.</p>
+        </div>
+        <div class="content" id="page2" style="display: none;">
+            <h3>Benefits of Using Pesticides & Insecticides</h3>
+            <ul>
+                <li>Protects Crops – Prevents pest-related damage and disease spread.</li>
+                <li>Boosts Yield – Ensures healthy plant growth and higher production.</li>
+                <li>Cost-Effective – Reduces crop losses and increases farm profitability.</li>
+                <li>Easy Application – Available in spray, powder, or liquid forms.</li>
+                <li>Long-Lasting Effect – Provides extended protection for crops.</li>
+            </ul>
+        </div>
+        <div class="content" id="page3" style="display: none;">
+            <h3>Types of Pesticides & Insecticides</h3>
+            <ul>
+                <li>Contact Pesticides – Kill pests upon direct contact.</li>
+                <li>Systemic Pesticides – Absorbed by plants to target internal pests.</li>
+                <li>Natural/Organic Pesticides – Eco-friendly solutions derived from natural ingredients.</li>
+                <li>Chemical Insecticides – Synthetic formulas for strong pest control.</li>
+            </ul>
+        </div>
+        <div class="content" id="page4" style="display: none;">
+            <h3>Buy High-Quality Pesticides & Insecticides</h3>
+            <p>🌾 <strong>Keep Your Crops Safe & Thriving!</strong> 🌾</p>
+            <p><strong>Product Name:</strong> Advanced Crop Protection Pesticide/Insecticide</p>
+            <p><strong>Form:</strong> Liquid/Spray/Powder</p>
+            <p><strong>Coverage:</strong> Protects [X] acres per liter</p>
+            <p><strong>Effectiveness:</strong> Fast-acting with long-lasting results</p>
+            <p><strong>Eco-Friendly Options:</strong> Available in organic and chemical formulations</p>
+        </div>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#" onclick="showPage(1)">1</a></li>
+                <li class="page-item"><a class="page-link" href="#" onclick="showPage(2)">2</a></li>
+                <li class="page-item"><a class="page-link" href="#" onclick="showPage(3)">3</a></li>
+                <li class="page-item"><a class="page-link" href="#" onclick="showPage(4)">4</a></li>
+                <li class="page-item"><a class="page-link" href="card.html" onclick="showPage(5)">5</a></li>
+                <li class="page-item"><a class="page-link" href="avail.html" onclick="showPage(6)">6</a></li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        function showPage(pageNumber) {
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('page' + i).style.display = 'none';
+            }
+            document.getElementById('page' + pageNumber).style.display = 'block';
+        }
+    </script>
+</body>
+</html>

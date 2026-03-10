@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Pari</title>
+    <!-- Meta tags for social sharing -->
+    <meta property="og:image" content="//image.prntscr.com/image/93970e70e1f045e1aff76e05469008d8.png" />
+    <meta property="og:image:secure_url" content="//image.prntscr.com/image/93970e70e1f045e1aff76e05469008d8.png" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="900" />
+    <meta property="og:image:height" content="900" />
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Icons -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        /* Custom Styles with Bootstrap classes */
+        .banner {
+            background-image: url('https://img.freepik.com/free-photo/golden-wheat-fields-glow-sunset-generated-by-ai_188544-44464.jpg?ga=GA1.1.823020566.1731828658&semt=ais_hybrid');
+            background-size: cover;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .banner-overlay {
+            background: rgba(255, 255, 255, 0.7);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .loading-spinner {
+            display: none;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Responsive typography */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .banner {
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-flower1 me-2"></i>
+                Agri Pari
+                <span class="badge bg-success ms-2">New</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">
+                            <i class="bi bi-house-door"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pick.html">
+                            <i class="fa fa-info-circle"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">
+                            <i class="bi bi-bag"></i> Products
+                            <span class="badge bg-info">Hot</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-grid"></i> Categories
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="spri.html"><i class="bi bi-robot"></i> Smart Agri Appliances</a></li>
+                            <li><a class="dropdown-item" href="solar.html"><i class="bi bi-lightning"></i> Energy Saving Devices</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="product.html"><i class="bi bi-shield"></i> Pesticides & Insecticides</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="seller.html">Become a Seller</a>
+                    </li>
+                </ul>
+                
+                <!-- Search Form -->
+                <form class="d-flex me-3">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Search products...">
+                        <button class="btn btn-outline-light" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- User Actions -->
+                <div class="d-flex">
+                    <a href="signup.html" class="btn btn-outline-light me-2">
+                        <i class="bi bi-person-plus"></i> Sign Up
+                    </a>
+                    <a href="products.html" class="btn btn-success">
+                        <i class="bi bi-cart"></i> Buy Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+
+    <!-- Banner Section -->
+    <section class="banner mb-5" id="home">
+        <div class="banner-overlay">
+            <div class="text-center">
+                <h1 class="display-4 fw-bold text-dark">Welcome to Natural Flavour</h1>
+                <p class="lead">Discover the future of agriculture</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container py-5" id="services">
+        <h2 class="text-center mb-4">Our Services</h2>
+        <div class="row g-4">
+            <!-- Service Card 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-robot"></i> Smart Agri Appliances
+                        </h5>
+                    </div>
+                    <img src="https://www.shutterstock.com/image-photo/weather-station-corn-field-5g-600nw-2292899439.jpg" class="card-img-top" alt="Smart Agri Appliance">
+                    <div class="card-body">
+                        <p class="card-text">Discover the latest in smart agricultural technology.</p>
+                        <div class="d-grid">
+                            <a href="spri.html" class="btn btn-outline-primary" onclick="showSpinnerAndRedirect(this, event)">
+                                <span class="spinner-border spinner-border-sm loading-spinner" role="status"></span>
+                                <span class="button-text">Learn More</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-lightning"></i> Energy Saving Devices
+                        </h5>
+                    </div>
+                    <img src="https://www.shutterstock.com/image-vector/house-energy-efficiency-efficient-rating-260nw-2475159677.jpg" class="card-img-top" alt="Energy Saving Device">
+                    <div class="card-body">
+                        <p class="card-text">Efficient solutions for sustainable farming.</p>
+                        <div class="d-grid">
+                            <a href="solar.html" class="btn btn-outline-success" onclick="showSpinnerAndRedirect(this, event)">
+                                <span class="spinner-border spinner-border-sm loading-spinner" role="status"></span>
+                                <span class="button-text">Learn More</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-warning">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-shield"></i> Pesticides & Insecticides
+                        </h5>
+                    </div>
+                    <img src="https://c8.alamy.com/comp/E672N3/miscellaneous-pesticides-stored-in-old-garden-shed-E672N3.jpg" class="card-img-top" alt="Pesticides & Insecticides">
+                    <div class="card-body">
+                        <p class="card-text">Professional crop protection solutions.</p>
+                        <div class="d-grid">
+                            <a href="pest.html" class="btn btn-outline-warning" onclick="showSpinnerAndRedirect(this, event)">
+                                <span class="spinner-border spinner-border-sm loading-spinner" role="status"></span>
+                                <span class="button-text">Learn More</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container py-5 d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="faqque.html">2</a></li>
+                <li class="page-item"><a class="page-link" href="products.html">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="container py-5" id="contact">
+        <h2 class="text-center mb-4">Contact Us</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" id="name" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your name.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="4" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please enter your message.
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="bi bi-send"></i> Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Table -->
+    <section class="container py-5" id="reviews">
+        <h2 class="text-center mb-4">Customer Reviews</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Review</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Utsav</td>
+                        <td>Smart Irrigation System</td>
+                        <td>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-half text-warning"></i>
+                        </td>
+                        <td>This product has significantly improved my farming efficiency.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Ayush Anand</td>
+                        <td>Energy Saving Device</td>
+                        <td>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                        </td>
+                        <td>Great energy-saving solution that reduced our bills.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5><i class="bi bi-headset"></i> Contact Us</h5>
+                    <address class="mb-0">
+                        <p><i class="bi bi-geo-alt"></i> Block no 33, Phagwara</p>
+                        <p><i class="bi bi-envelope"></i> ayush@1234</p>
+                        <p><i class="bi bi-telephone"></i> 6200304086</p>
+                    </address>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="bi bi-link-45deg"></i> Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="product.html" class="text-white text-decoration-none">Products</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                        <li><a href="pick.html" class="text-white text-decoration-none">about us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5><i class="bi bi-share"></i> Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+        function showSpinnerAndRedirect(link, event) {
+            event.preventDefault(); 
+            const spinner = link.querySelector('.loading-spinner');
+            const text = link.querySelector('.button-text');
+            
+            spinner.style.display = 'inline-block';
+            text.textContent = 'Loading...';
+            
+            setTimeout(() => {
+                window.location.href = link.href; 
+            }, 1000);
+        }
+        function showSpinner(button) {
+            const spinner = button.querySelector('.loading-spinner');
+            const text = button.querySelector('.button-text');
+            
+            spinner.style.display = 'inline-block';
+            text.textContent = 'Loading...';
+            
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                text.textContent = 'Learn More';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+
+    

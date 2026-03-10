@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agri Pari - Products</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    .banner {
+      background: linear-gradient(270deg, #4facfe, #00f2fe, #43e97b, #38f9d7);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+    }
+    
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transform: perspective(1000px) rotateY(0deg) rotateX(5deg);
+      transition: transform 0.5s ease;
+    }
+    
+    .video-container:hover {
+      transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.02);
+    }
+    
+    .video-container video {
+      width: 100%;
+      display: block;
+    }
+    
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0.9;
+    }
+    
+    .play-button:hover {
+      background: rgba(255,255,255,1);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .play-button i {
+      color: #ff5e62;
+      font-size: 30px;
+      margin-left: 5px;
+    }
+    
+    .banner-btn {
+      position: relative;
+      z-index: 2;
+      background-color: #ffffffcc;
+      color: #ff5e62;
+      font-weight: bold;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .banner-btn:hover {
+      background-color: #ff3b40;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    .banner-btn:active {
+      transform: translateY(1px);
+    }
+    
+    .card img {
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .footer {
+      padding: 20px;
+      margin-top: 20px;
+      background: #343a40;
+      color: white;
+      text-align: center;
+    }
+    
+    .cart-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .cart-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 250px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      padding: 15px;
+      border-radius: 10px;
+      z-index: 1000;
+      transform-origin: top right;
+      animation: scaleIn 0.3s ease-out forwards;
+    }
+    
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    
+    .cart-dropdown:hover .cart-menu {
+      display: block;
+    }
+    
+    .btn-custom {
+      background-color: white;
+      color: #ff5e62;
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 10px 20px;
+      transition: all 0.3s;
+      border: 2px solid #ff5e62;
+    }
+    
+    .btn-custom:hover {
+      background-color: #ff3b40;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 94, 98, 0.3);
+    }
+    
+    #toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 2000;
+    }
+    
+    .toast-message {
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      opacity: 0;
+      transition: all 0.5s ease;
+      transform: translateX(100px);
+    }
+    
+    .toast-message.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .card {
+      transition: all 0.3s ease;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .card-body {
+      padding: 20px;
+    }
+    
+    .card-title {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .card-text {
+      color: #666;
+      margin-bottom: 15px;
+    }
+    
+    .btn-primary {
+      background-color: #ff5e62;
+      border-color: #ff5e62;
+      border-radius: 30px;
+      padding: 8px 20px;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background-color: #ff3b40;
+      border-color: #ff3b40;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 94, 98, 0.4);
+    }
+    
+    .price-tag {
+      font-size: 1.2rem;
+      color: #ff5e62;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 94, 98, 0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(255, 94, 98, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 94, 98, 0); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Agri Pari</a>
+    <div class="ml-auto cart-dropdown">
+      <span class="text-white"><i class="fas fa-shopping-cart mr-2"></i>Cart: <span id="cart-count">0</span></span>
+      <div class="cart-menu" id="cart-menu">
+        <h5 class="mb-3">Your Cart</h5>
+        <ul id="cart-items" class="list-unstyled"></ul>
+        <hr>
+        <p class="text-right"><strong>Total: ₹<span id="cart-total">0</span></strong></p>
+        <a href="buy-now.html" class="btn btn-primary btn-block">Checkout</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="banner">
+      <div class="banner-content">
+        <h1 class="mb-4">Shop Our Premium Products</h1>
+        <div class="video-container floating">
+          <video id="shop-video" poster="order-now-icon-motion-graphics-animation-with-alpha-channel-transparent-backgr-SBV-347428072-preview.mp4" loop muted>
+            <source src="order-now-icon-motion-graphics-animation-with-alpha-channel-transparent-backgr-SBV-347428072-preview.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="play-button" id="play-button">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <button class="banner-btn pulse" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+          <i class="fas fa-arrow-down mr-2"></i> Shop Now
+        </button>
+      </div>
+    </div>
+
+    <div id="products" class="row">
+      <!-- Product 1 - Smart Sprinkle System -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://hasthip.com/cdn/shop/files/71QFFFOevnL_bee8c430-f297-43d3-a23b-dc4fd6cebb17.jpg?v=1732937151" 
+               class="card-img-top" 
+               alt="Sprinkle System"
+               data-toggle="tooltip" 
+               data-placement="top" 
+               title="Automated irrigation system with smart sensors">
+          <div class="card-body">
+            <h5 class="card-title">Smart Sprinkle System</h5>
+            <p class="card-text">Efficient water usage for farming with automated controls and smart sensors.</p>
+            <p class="price-tag">₹5000</p>
+            <button class="btn btn-primary" 
+                    onclick="placeOrder('Smart Sprinkle System', 5000)"
+                    data-toggle="tooltip" 
+                    data-placement="bottom" 
+                    title="Click to add to cart">
+              <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Product 2 - Solar Energy System -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://gracerenew.com/images/solar-panels-for-agriculture.webp" 
+               class="card-img-top" 
+               alt="Solar Device"
+               data-toggle="tooltip" 
+               data-placement="top" 
+               title="Solar panels designed for agricultural use">
+          <div class="card-body">
+            <h5 class="card-title">Solar Energy System</h5>
+            <p class="card-text">Sustainable energy solution for agriculture with high-efficiency panels.</p>
+            <p class="price-tag">₹15000</p>
+            <button class="btn btn-primary" 
+                    onclick="placeOrder('Solar Energy System', 15000)"
+                    data-toggle="tooltip" 
+                    data-placement="bottom" 
+                    title="Click to add to cart">
+              <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Product 3 - High-Quality Pesticides -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="https://agriplexindia.com/cdn/shop/products/Solomon_2.png?crop=center&height=645&v=1677908912&width=645" 
+               class="card-img-top" 
+               alt="Pesticides"
+               data-toggle="tooltip" 
+               data-placement="top" 
+               title="Organic and chemical pest control solutions">
+          <div class="card-body">
+            <h5 class="card-title">High-Quality Pesticides</h5>
+            <p class="card-text">Protect your crops effectively with our premium pest control solutions.</p>
+            <p class="price-tag">₹2000</p>
+            <button class="btn btn-primary" 
+                    onclick="placeOrder('High-Quality Pesticides', 2000)"
+                    data-toggle="tooltip" 
+                    data-placement="bottom" 
+                    title="Click to add to cart">
+              <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Products Section -->
+    <h2 class="text-center my-5" style="color: #333; font-weight: bold; position: relative;">
+      <span style="position: relative; display: inline-block;">
+        New Arrivals
+        <span style="position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #4facfe, #00f2fe); border-radius: 3px;"></span>
+      </span>
+    </h2>
+    <div class="row" id="sellerProducts">
+      <!-- Seller products will be loaded here -->
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+      <a href="agricomm.html" class="btn btn-custom">
+        <i class="fas fa-arrow-left mr-2"></i> Back to Home
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2025 Agri Pari - All Rights Reserved</p>
+    <div class="social-icons mt-2">
+      <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+  <script>
+    // Initialize tooltips
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+    let cartCount = 0;
+    let cartItems = [];
+    let cartTotal = 0;
+    
+    // Video controls
+    const video = document.getElementById('shop-video');
+    const playButton = document.getElementById('play-button');
+    
+    playButton.addEventListener('click', function() {
+      if (video.paused) {
+        video.play();
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        video.removeAttribute('muted');
+      } else {
+        video.pause();
+        playButton.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+    
+    video.addEventListener('click', function() {
+      if (video.paused) {
+        video.play();
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        video.removeAttribute('muted');
+      } else {
+        video.pause();
+        playButton.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+    
+    // Autoplay video when visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play();
+          playButton.innerHTML = '<i class="fas fa-pause"></i>';
+          video.muted = true;
+        } else {
+          video.pause();
+          playButton.innerHTML = '<i class="fas fa-play"></i>';
+        }
+      });
+    }, {threshold: 0.5});
+    
+    observer.observe(video);
+
+    // Load seller products
+    function loadSellerProducts() {
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      const container = document.getElementById('sellerProducts');
+      
+      sellerProducts.forEach(product => {
+        const productCard = `
+          <div class="col-md-4">
+            <div class="card">
+              <img src="${product.image}" 
+                   class="card-img-top" 
+                   alt="${product.name}"
+                   data-toggle="tooltip" 
+                   data-placement="top" 
+                   title="${product.description}">
+              <div class="card-body">
+                <h5 class="card-title">${product.name}</h5>
+                <p class="card-text">${product.description}</p>
+                <p class="price-tag">₹${product.price}</p>
+                <p class="text-muted"><i class="fas fa-user-tie mr-2"></i>Seller: ${product.sellerName}</p>
+                <button class="btn btn-primary" 
+                        onclick="placeOrder('${product.name}', ${product.price})"
+                        data-toggle="tooltip" 
+                        data-placement="bottom" 
+                        title="Click to add to cart">
+                  <i class="fas fa-cart-plus mr-2"></i> Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += productCard;
+      });
+    }
+
+    // Show important message toast on page load
+    window.onload = function() {
+      showToast("Important: All prices include GST. Free shipping on orders above ₹10,000!", "info");
+      loadSellerProducts();
+      
+      // Add floating animation to all cards after a delay
+      setTimeout(() => {
+        document.querySelectorAll('.card').forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.1}s`;
+          card.classList.add('floating');
+        });
+      }, 500);
+    };
+
+    function placeOrder(productName, price) {
+      cartCount++;
+      document.getElementById('cart-count').innerText = cartCount;
+      cartItems.push({ name: productName, price: price });
+      cartTotal += price;
+      updateCartMenu();
+      showToast(`${productName} added to cart!`, "success");
+      
+      // Animate cart count
+      const cartCountElement = document.getElementById('cart-count');
+      cartCountElement.classList.add('animate__animated', 'animate__bounce');
+      setTimeout(() => {
+        cartCountElement.classList.remove('animate__animated', 'animate__bounce');
+      }, 1000);
+      
+      // Show special offer toast for first item
+      if (cartCount === 1) {
+        setTimeout(() => {
+          showToast("Special: Get 10% off when you buy 2 or more items!", "warning");
+        }, 1500);
+      }
+      
+      // Show free shipping toast for orders over 10000
+      if (cartTotal >= 10000 && !document.getElementById('free-ship-toast')) {
+        setTimeout(() => {
+          showToast("🎉 Congratulations! You've qualified for FREE shipping!", "success");
+        }, 2000);
+      }
+    }
+
+    function updateCartMenu() {
+      let cartList = document.getElementById('cart-items');
+      cartList.innerHTML = '';
+      cartItems.forEach(item => {
+        let li = document.createElement('li');
+        li.className = 'mb-2 d-flex justify-content-between align-items-center';
+        li.innerHTML = `
+          <span>${item.name}</span>
+          <span class="font-weight-bold">₹${item.price}</span>
+        `;
+        cartList.appendChild(li);
+      });
+      document.getElementById('cart-total').innerText = cartTotal;
+    }
+
+    function showToast(message, type = "success") {
+      const toast = document.createElement('div');
+      toast.className = `toast-message bg-${type === "success" ? "success" : type === "info" ? "info" : "warning"}`;
+      toast.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="mr-3">
+            <i class="fas ${type === "success" ? "fa-check-circle" : type === "info" ? "fa-info-circle" : "fa-exclamation-triangle"} mr-2"></i>
+            <span>${message}</span>
+          </div>
+          <button type="button" class="close text-white" onclick="this.parentElement.parentElement.remove()" style="opacity: 1;">
+            <span>&times;</span>
+          </button>
+        </div>
+      `;
+      
+      document.getElementById('toast-container').appendChild(toast);
+      
+      // Show toast
+      setTimeout(() => {
+        toast.classList.add('show');
+      }, 100);
+      
+      // Hide and remove toast after 5 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
